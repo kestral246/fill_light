@@ -1,14 +1,16 @@
 -- Fill lights [fill_light]
 -- by David G (kestral246@gmail.com)
--- 2019-09-19
+-- 2019-09-24
 --
 -- Provides full and half brightness fill light nodes to help work around the limited range of Minetest's lamps.
+-- Remove dependency on default mod.
 --
 
 local user_config = {}
 
 local search_range = 30  -- Distance to search for lights.
 local search_time = 60  -- How long to search for lights (sec).
+local full_brightness_value = 14  -- How bright to make full lights.
 local half_brightness_value = 9  -- How bright to make half lights.
 
 minetest.register_privilege("fill_lights", {description = "Allow toggling visibility of fill lights."})
@@ -30,7 +32,7 @@ minetest.register_node("fill_light:full", {
 	walkable = false,
 	paramtype = "light",
 	sunlight_propagates = true,
-	light_source = default.LIGHT_MAX,
+	light_source = full_brightness_value,
 	pointable = true,
 	buildable_to = false,
 	drops = "",
@@ -43,7 +45,7 @@ minetest.register_node("fill_light:hide_full", {
 	walkable = false,
 	paramtype = "light",
 	sunlight_propagates = true,
-	light_source = default.LIGHT_MAX,
+	light_source = full_brightness_value,
 	pointable = false,
 	buildable_to = true,
 	drops = "",
